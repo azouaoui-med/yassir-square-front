@@ -3,10 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.4.3",
+    "@material-ui/icons": "^4.4.3",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "mousetrap": "^1.6.3",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
+    "react-google-maps": "^9.4.5",
+    "react-places-autocomplete": "^7.2.1",
     "react-scripts": "3.1.2"
   },
   "scripts": {
