@@ -1,0 +1,71 @@
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.yassir-login {
+  padding: 40px;
+  .ilustration {
+    max-width: 100%;
+    max-height: 300px;
+  }
+  .social-auth {
+    button {
+      height: 50px;
+    }
+    img {
+      margin-right: 10px;
+      &.btn-fb {
+        width: 20px;
+        height: 20px;
+      }
+      &.btn-g {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}
+
+.logo {
+  img {
+    max-width: 150px;
+  }
+}
+
+.footer {
+  img {
+    width: 50px;
+    margin-right: 10px;
+  }
+}
+.h11 {
+  text-align: center;
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+
+.h11:before {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 2px;
+  position: absolute;
+  background: #ddd;
+  left: 0;
+  top: 50%;
+  z-index: -2;
+}
+
+.h11:after {
+  content: '';
+  display: block;
+  width: 180px;
+  height: 2px;
+  position: absolute;
+  background: #ddd;
+  right: 0;
+  top: 50%;
+  z-index: -2;
+}
