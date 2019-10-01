@@ -156,8 +156,13 @@ export default class FormDialog extends React.Component {
             case 'select':
                 
                 this.setState({selected: true});
-                axios.post("/tags/create" ,{image: this.state.image,location: this.state.location,title: this.state.title, name:this.state.name, description: this.state.description})
-                
+                const image = this.state.image;
+                const location = this.state.location;
+                const title = this.state.title;
+                const name = this.state.name;
+                const description = this.state.description
+                axios.post("/tags/create" ,{image,location,title, name, description})
+                this.setState((prevState)=> ({places: [{image,location,title, name, description}, ...prevState.places]}))
                 
                 break;
             case 'cancel':
@@ -264,21 +269,9 @@ export default class FormDialog extends React.Component {
  
     
     render() {
-        let states = require('../../../geo-levels/sublevel1.json');
-        if (this.state.country){
-            states = states.filter( s => s.sublevel0.sublevel0_id === this.state.country.toString())
-        }
-        
-        let districts = [];
-        let towns = [];
-        if (this.state.state){
-            districts = require('../../../geo-levels/sublevel2.json');
-            districts = districts.filter( d => d.sublevel1.sublevel1_id === this.state.state );
-        }
-        if (this.state.district){
-            towns = require('../../../geo-levels/sublevel3.json');
-            towns = towns.filter( t => t.sublevel2.id === this.state.district )
-        }
+       
+      
+       
             return (   
                 <Paper style={{ height:'920px'}} >
 
@@ -292,7 +285,8 @@ export default class FormDialog extends React.Component {
                         mapElement={<div style={{ height: `100%` }} />}
 
                     >
-                        <Marker position={DEFAULT_CENTER} />
+                        {this.state.places.map(p => (<Marker key={p.id} title={p.title} position={p.location}  />) )}
+                        
                     </GoogleMapReact>
 
                     <Dialog
