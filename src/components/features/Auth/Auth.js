@@ -70,7 +70,7 @@ const Auth = props => {
           </form>
           <div>
             <small>
-              Don't have an account?{' '}
+              Don't have an account?
               <NavLink className="link" to="/register">
                 Register
               </NavLink>

@@ -74,6 +74,13 @@ const Register = props => {
                 required
               />
             </div>
+            {props.registerError.error ? (
+              <div>
+                <label className="text-danger">
+                  {props.registerError.error}
+                </label>
+              </div>
+            ) : null}
             <button
               type="submit"
               className="btn btn-block btn-success rounded-pill"

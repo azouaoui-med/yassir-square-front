@@ -10,8 +10,10 @@ import axios from '../../axios';
 const Layout = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isAuthFail, setIsAuthFail] = useState(false);
+  const [registerError, setRegisterError] = useState({ error: '' });
 
   useEffect(() => {
+    setRegisterError({ error: '' });
     setIsAuthFail(false);
   }, []);
 
@@ -30,19 +32,21 @@ const Layout = () => {
 
   const handleLogout = () => {
     localStorage.setItem('token', '');
-
     setIsAuth(false);
   };
 
   const handleRegister = async userInfo => {
     try {
       const response = await axios.post('/register', userInfo);
+      console.log(response);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
-
         setIsAuth(true);
       }
+      if (response.error) {
+      }
     } catch (error) {
+      setRegisterError({ error: 'Error while registering' });
       console.log(error);
     }
   };
@@ -71,7 +75,10 @@ const Layout = () => {
                 path="/register"
                 render={() =>
                   !isAuth ? (
-                    <Register handleRegister={handleRegister}></Register>
+                    <Register
+                      handleRegister={handleRegister}
+                      registerError={registerError}
+                    ></Register>
                   ) : (
                     <Redirect to="/"></Redirect>
                   )
